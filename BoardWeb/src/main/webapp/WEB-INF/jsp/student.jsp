@@ -34,6 +34,6 @@
 		</tr>
 
 	</table>
-	<a href = "../sampleServlet">목록으로</a>
+	<a href = "../SampleServlet">목록으로</a>
 </body>
 </html>

@@ -27,4 +27,6 @@
   delete from tbl_student
   where std_no = #{stdNo}
   </delete>
+  
+  
 </mapper>
