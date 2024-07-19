@@ -17,8 +17,9 @@
 			<td><input class="form-control" type="text" name="writer"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input class="btn btn-primary"
-				type="submit"> <input class="btn btn-secondary" type="reset">
+			<td colspan="2" align="center">
+			<input class="btn btn-primary"type="submit"> 
+			<input class="btn btn-secondary" type="reset">
 
 			</td>
 		</tr>
