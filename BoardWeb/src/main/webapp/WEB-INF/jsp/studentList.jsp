@@ -20,7 +20,8 @@
 				<th>연락처</th>
 			</tr>
 		</thead>
-		<tbady> <%
+		<tbady> 
+		<%
  //자바영역.
  SqlSession sqlSession = DataSource.getInstance().openSession(true);
  StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);

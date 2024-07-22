@@ -7,27 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
 
-public class modifyBoardControl implements Control {
+public class LoginForm implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String bno = req.getParameter("bno");
-
-		BoardService svc = new BoardServiceImpl();
-		BoardVO board = svc.getBoard(Integer.parseInt(bno));
-		
-		req.setAttribute("board", board);
-		
-		req.getRequestDispatcher("WEB-INF/jsp/modifyForm.jsp")//
+		req.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp")//
 		.forward(req, resp); // 페이지 재지정.
 	}
 
 }
-
-
-

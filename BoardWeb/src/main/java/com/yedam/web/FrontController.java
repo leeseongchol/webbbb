@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
+import com.yedam.control.ActionControl;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.LoginControl;
+import com.yedam.control.LoginForm;
+import com.yedam.control.LogoutControl;
 import com.yedam.control.StudentListControl;
 import com.yedam.control.UpdateBoard;
 import com.yedam.control.ViewDetailsControl;
@@ -38,14 +42,24 @@ public class FrontController extends HttpServlet {
 		//글 등록 구현 : 등록화면(boardForm.do)  + DB등록(addBoard.do) ->  글 목록 페이지이동
 		map.put("/boardForm.do", new BoardForm());
 		map.put("/addBoard.do", new AddBoardControl());
-		map.put("/board.do",  new ViewDetailsControl());
+		
 		//학생목록.
 		map.put("/stdList.do", new StudentListControl());
+		//상세화면
+		map.put("/board.do",  new ViewDetailsControl());
+		//삭제
 		map.put("/removeBoard.do", new removeBoradControl());
 		map.put("/deleteBoard.do", new deleteBoard());
+		//수정
 		map.put("/modifyBoard.do", new modifyBoardControl());
 		map.put("/updateBoard.do", new UpdateBoard());
-		
+		//태그연습
+		map.put("/action.do", new ActionControl());
+		//로그인 
+		map.put("/loginForm.do", new LoginForm()); 
+		map.put("/login.do", new LoginControl());
+		//로그아웃
+		map.put("/logout.do", new LogoutControl());	 
 		
 		
 	}

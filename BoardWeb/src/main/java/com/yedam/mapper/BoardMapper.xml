@@ -3,7 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.BoardMapper">
-
+<sql id = "selectCondition">
+ WHERE
+                    <choose>
+                        <when test="searchCondition == 'T' .toString()">
+                            title LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'W'.toString()">
+                            writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <when test="searchCondition == 'TW'.toString()">
+                            title LIKE '%' || #{keyword} || '%'    OR writer LIKE '%' || #{keyword} || '%'
+                        </when>
+                        <otherwise>1 = 1</otherwise>
+                    </choose>
+</sql>
 	<select id="selectList" resultType="com.yedam.vo.BoardVO">
 		select board_no
 		,title
@@ -24,19 +38,7 @@
                 FROM (
                     SELECT *
                     FROM tbl_board
-                    WHERE
-                    <choose>
-                        <when test="searchCondition == 'T' .toString()">
-                            title LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchCondition == 'W'.toString()">
-                            writer LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchCondition == 'TW'.toString()">
-                            title LIKE '%' || #{keyword} || '%'    OR writer LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <otherwise>1 = 1</otherwise>
-                    </choose>
+                   <include refid="selectCondition"></include>
                     ORDER BY board_no DESC 
                     ) a
                 ) b
@@ -50,26 +52,14 @@
 	<select id="selectTotalCount" parameterType="com.yedam.common.SearchVO">
 		select count(1)
 		from tbl_board
-		                    WHERE
-                    <choose>
-                        <when test="searchCondition == 'T' .toString()">
-                            title LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchCondition == 'W'.toString()">
-                            writer LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <when test="searchCondition == 'TW'.toString()">
-                            title LIKE '%' || #{keyword} || '%'    OR writer LIKE '%' || #{keyword} || '%'
-                        </when>
-                        <otherwise>1 = 1</otherwise>
-                    </choose>
+		   <include refid="selectCondition"></include>                 
 	</select>
 
 	<insert id="insertBoard" parameterType="com.yedam.vo.BoardVO">
 		insert into tbl_board
-		(board_no, title, writer, content)
+		(board_no, title, writer, content, image)
 		values(board_seq.nextval,
-		#{title},#{writer},#{content})
+		#{title},#{writer},#{content}, #{image})
 	</insert>
 	<update id="updateBoard" parameterType="com.yedam.vo.BoardVO">
 		update tbl_board
@@ -90,7 +80,12 @@
 	</delete>
 	<select id="selectBoard" parameterType="int"
 		resultType="com.yedam.vo.BoardVO">
-		select *
+		select board_no
+		      ,title
+		      ,content
+		      ,writer
+		      ,view_cnt
+		      ,image
 		from tbl_board
 		where board_no = #{boardNo}
 	</select>
