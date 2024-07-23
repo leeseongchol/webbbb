@@ -1,6 +1,13 @@
 package com.yedam.service;
 
-public interface MemberService {
+import java.util.List;
 
-		boolean loginCheck(String id, String pw);
+import com.yedam.vo.MemberVO;
+
+public interface MemberService {
+    MemberVO loginCheck(String id, String pw);
+
+    List<MemberVO> memberList(String res);
+
+
 }

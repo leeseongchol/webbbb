@@ -25,7 +25,7 @@ public class ViewDetailsControl implements Control {
 		req.setAttribute("board", board);
 		req.setAttribute("page", page);
 		
-		req.getRequestDispatcher("WEB-INF/jsp/board.jsp")//
+		req.getRequestDispatcher("board/board.tiles")//
 				.forward(req, resp); // 페이지 재지정.
 
 	}

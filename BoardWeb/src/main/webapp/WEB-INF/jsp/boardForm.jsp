@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../includes/header.jsp"%>
+
 <form action="addBoard.do" method="post" enctype="multipart/form-data">
 	<h3>등록화면(boardForm.jsp)</h3>
 	<table class="table">
@@ -29,4 +29,4 @@
 		</tr>
 	</table>
 </form>
-<%@ include file="../includes/footer.jsp"%>
+

@@ -23,7 +23,7 @@ public class modifyBoardControl implements Control {
 		
 		req.setAttribute("board", board);
 		
-		req.getRequestDispatcher("WEB-INF/jsp/modifyForm.jsp")//
+		req.getRequestDispatcher("board/modifyForm.tiles")//
 		.forward(req, resp); // 페이지 재지정.
 	}
 

@@ -15,7 +15,7 @@ public class StudentListControl implements Control {
 		// TODO Auto-generated method stub
 		// stdList.do -> 보여줄 페이지는 WEB-INF/jsp/studentlist.jsp
 		try {
-			req.getRequestDispatcher("WEB-INF/jsp/studentList.jsp").forward(req, resp); // 페이지 재지정.
+			req.getRequestDispatcher("board/studentList.tiles").forward(req, resp); // 페이지 재지정.
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
