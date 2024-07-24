@@ -15,4 +15,6 @@ public interface StudentMapper {
 
     // 로그인체크
     MemberVO selectMember(@Param("id")String id, @Param("pw")String pw);
+   
+    
 }

@@ -6,7 +6,7 @@ import com.yedam.vo.MemberVO;
 
 public interface MemberService {
     MemberVO loginCheck(String id, String pw);
-
+    
     List<MemberVO> memberList(String res);
 
 

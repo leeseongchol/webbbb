@@ -22,8 +22,9 @@ public class MemberListControl implements Control {
 
             List<MemberVO> list = svc.memberList(order);
             
+           
             req.setAttribute("memberList", list);
-
+            
             req.getRequestDispatcher("admin/memberList.tiles").forward(req, resp); 
             
     }
