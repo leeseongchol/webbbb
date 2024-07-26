@@ -2,66 +2,49 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.yedam.mapper.StudentMapper">
 
-<select id ="selectres" resultType = "com.yedam.vo.MemberVO">
-select *
-from tbl_member
-where responsibility = #{res}
+	<select id="selectMember" resultType="com.yedam.vo.MemberVO">
+		select *
+		from tbl_member
+		where member_id = #{id}
+		and member_pw = #{pw}
+	</select>
 
+	<select id="memberList" resultType="com.yedam.vo.MemberVO">
+		select *
+		from tbl_member
+		where responsibility = #{res}
+		order by ${order}
+	</select>
 
-</select>
+	<select id="studentList" resultType="com.yedam.vo.StudentVO">
+		select * from tbl_student
+		order by std_no
+	</select>
 
+	<select id="selectOne" parameterType="String"
+		resultType="com.yedam.vo.StudentVO">
+		select *
+		from tbl_student
+		where std_no = (#{stdNo})
+	</select>
 
-<select id ="selectMember" resultType = "com.yedam.vo.MemberVO">
-select *
-from tbl_member
-where member_id = #{id}
-and   member_pw = #{pw}
+	<insert id="insertStudent" parameterType="com.yedam.vo.StudentVO">
+		insert into tbl_student (std_no, std_name, std_phone, birth_date)
+		values(#{stdNo}, #{stdName}, #{stdPhone}, #{birthDate})
+	</insert>
 
-</select>
- <select id="memberList" parameterType = "string" resultType="com.yedam.vo.MemberVO">
-        select *
-        from tbl_member
-        where responsibility = 'user'
-        <choose>
-            <when test="res == 'member_id'.toString()">
-                 order by member_id
-            </when>
-            <when test="res == 'member_nm'.toString()">
-                 order by member_nm
-            </when>
-            <otherwise></otherwise>
-        </choose>
-       
-    </select>
-    
+	<update id="updateStudent" parameterType="com.yedam.vo.StudentVO">
+		update tbl_student
+		set std_phone = #{stdPhone}
+		where std_no = #{stdNo}
+	</update>
 
-  <select id="studentList" resultType="com.yedam.vo.StudentVO">
-    select * from tbl_student order by std_no 
-  </select>
-  
-  
-  <select id = "selectOne" parameterType = "string" resultType = "com.yedam.vo.StudentVO">
-  select *
-  from tbl_student
-  where std_no = #{sno}
-  </select>
-  <insert id = 'insertStudent' parameterType="com.yedam.vo.StudentVO">
-  insert into tbl_student (std_no, std_name, std_phone, birth_date)
-  values(#{stdNo},#{stdName},#{stdPhone}, #{birthDate})
-  </insert>
-  
-  <update id = 'updateStudent' parameterType="com.yedam.vo.StudentVO">
-  update tbl_student 
-  set std_Phone = #{stdPhone}
-  where  std_no = #{stdNo}
-  </update>
-  
-  <delete id = 'deleteStudent' parameterType ="string">
-  delete from tbl_student
-  where std_no = #{stdNo}
-  </delete>
-  
-  
+	<delete id="deleteStudent" parameterType="string">
+		delete from tbl_student
+		where std_no = #{stdNo}
+	</delete>
+
 </mapper>

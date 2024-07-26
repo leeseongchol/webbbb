@@ -9,6 +9,5 @@ public class MemberVO {
 	private String memberPw;
 	private String memberNm;
 	private String responsibility;
-	
-	
+
 }
