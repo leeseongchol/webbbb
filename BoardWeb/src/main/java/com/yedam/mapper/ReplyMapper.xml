@@ -35,10 +35,16 @@
 		values(#{replyNo}, #{replyContent}, #{replyer}, #{boardNo})
 	</insert>
 
-	<delete id="deleteReply">
+	<delete id="deleteReply" parameterType="int">
 		delete from tbl_reply
 		where reply_no = #{replyNo}
 
 	</delete>
+	
+	<select id="totalReplyCnt" resultType="int">
+	select count(1)
+	from tbl_reply
+	where board_no = #{boardNo}
+	</select>
 
 </mapper>

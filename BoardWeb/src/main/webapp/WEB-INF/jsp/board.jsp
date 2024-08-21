@@ -1,8 +1,9 @@
-
+<%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
 div.reply ul {
@@ -13,50 +14,51 @@ div.reply span {
 	display: inline-block;
 }
 </style>
-<h3>게시판 상세(board.jsp)</h3>
-
+<h3>게시판 상세화면(board.jsp)</h3>
 <form action="removeBoard.do">
-	<input type="hidden" name="bno" value="${board.boardNo }"> <input
-		type="hidden" name="page" value="${page }">
+	<input type="hidden" name="bno" value="${board.boardNo}"> <input
+		type="hidden" name="page" value="${page}">
 	<table class="table">
 		<tr>
 			<th class="col-sm-3">글번호</th>
-			<td>${board.boardNo }</td>
+			<td class="col-sm-3">${board.boardNo}</td>
 			<th class="col-sm-3">조회수</th>
-			<td>${board.viewCnt }</td>
+			<td class="col-sm-3">${board.viewCnt}</td>
 		</tr>
 
 		<tr>
 			<th>제목</th>
-			<td colspan="3">${board.title }</td>
+			<td colspan="3">${board.title}</td>
 		</tr>
+
 		<tr>
 			<th>내용</th>
-			<td colspan="3">${board.content }</td>
+			<td colspan="3">${board.content}</td>
 		</tr>
+
 		<tr>
 			<th>작성자</th>
-			<td colspan="3">${board.writer }</td>
+			<td colspan="3">${board.writer}</td>
 		</tr>
+
 		<tr>
 			<th>파일</th>
 			<td colspan="3"><c:choose>
-					<c:when test="${!empty board.image }">
-						<img width="250px" src="images/${board.image }" />
-					</c:when>
+					<c:when test="${empty board.image}"> 이미지없음 </c:when>
 					<c:otherwise>
-						<p></p>
+						<img width="250px" src="images/${board.image }">
 					</c:otherwise>
 				</c:choose></td>
 		</tr>
+
 		<tr>
-			<td colspan="4 align="center"><c:choose>
-					<c:when test="${logid == board.writer }">
+			<td colspan="4" align="center"><c:choose>
+					<c:when test="${logid == board.writer}">
 						<input class="btn btn-danger" type="submit" value="삭제화면">
 						<button class="btn btn-warning" type="button">수정화면</button>
 					</c:when>
 					<c:otherwise>
-						<input class="btn btn-danger" disabled type="submit" value="삭제화면">
+						<input class="btn btn-danger" disabled="submit" value="삭제화면">
 						<button class="btn btn-warning" disabled type="button">수정화면</button>
 					</c:otherwise>
 				</c:choose></td>
@@ -66,49 +68,44 @@ div.reply span {
 
 <!-- 댓글관련 -->
 <div class="container reply">
-	<!-- 등록. -->
+	<!-- 등록 -->
 	<div class="header">
 		<input class="col-sm-8" id="content">
 		<button class="col-sm-3" id="addReply">댓글등록</button>
 	</div>
-	<!-- 목록. -->
+	<!-- 목록 -->
 	<div class="content">
 		<ul id="replyList">
-			<li style="display: none;"><span class="col-sm-2">12</span> <span
-				class="col-sm-5">댓글내용입니다.</span> <span class="col-sm-2">user02</span>
-				<span class="col-sm-2"><button>삭제</button></span></li>
+			<li style="display: none;">
+			<span class="col-sm-2">12</span> 
+			<span class="col-sm-5">댓글내용부분</span> 
+			<span class="col-sm-2">user02</span>
+			<span class="col-sm-2">
+			<button>삭제</button></span>
+			</li>
 		</ul>
 	</div>
-	<!-- 댓글페이징. -->
+	<!-- 댓글페이징 -->
 	<div class="footer">
 		<nav aria-label="...">
-			<ul class="pagination">
-				<li class="page-item disabled">
-				<span class="page-link">Previous</span>
-				</li>
-				<li class="page-item">
-				<a class="page-link" href="#">1</a></li>
-				<li class="page-item " aria-current="page">
-				<span class="page-link">2</span></li>
-				<li class="page-item " aria-current="page">
-				<span class="page-link">3</span></li>
-				<li class="page-item " aria-current="page">
-				<span class="page-link">4</span></li>
-				<li class="page-item">
-				<a class="page-link" href="#">5</a></li>
-				<li class="page-item">
-				<a class="page-link" href="#">Next</a>
-				</li>
+			<ul class="pagination justify-content-center">
+				
 			</ul>
 		</nav>
 	</div>
+</div>
+
 
 	<script>
 		const bno = "${board.boardNo}";
+		const replyer = "${logid}";
 		document.querySelector('form>table button.btn.btn-warning')
 				.addEventListener('click', function(e) {
-					location.href = 'modifyBoard.do?bno=${board.boardNo }';
+					location.href = 'modifyBoard.do?bno=${board.boardNo}';
 				});
 	</script>
-	<script src="js/boardService.js"></script>
-	<script src="js/board.js"></script>
+
+
+<!-- 	<script src="js/boardService.js"></script>
+	<script src="js/board.js"></script> -->
+	<script src="js/boardJquery.js"></script>

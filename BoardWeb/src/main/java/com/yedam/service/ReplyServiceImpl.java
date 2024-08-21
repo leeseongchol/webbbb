@@ -9,7 +9,6 @@ import com.yedam.common.SearchVO;
 import com.yedam.mapper.ReplyMapper;
 import com.yedam.vo.ReplyVO;
 
-
 public class ReplyServiceImpl implements ReplyService {
 	SqlSession sqlSession = DataSource.getInstance().openSession(true);
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
@@ -32,6 +31,13 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.deleteReply(replyNo) == 1;
 	}
 
+	@Override
+	public int replyTotalCnt(int boardNo) {
+		// TODO Auto-generated method stub
+		return mapper.totalReplyCnt(boardNo);
+	}
+
 	
+
 
 }

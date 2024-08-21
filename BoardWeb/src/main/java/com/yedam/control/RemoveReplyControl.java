@@ -20,14 +20,14 @@ public class RemoveReplyControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 			// TODO Auto-generated method stub
-			String bno = req.getParameter("bno"); // removeStudent.do?
+			String rvo = req.getParameter("rvo"); // removeStudent.do?
 			ReplyService svc = new ReplyServiceImpl();
 			
 			
 			Map<String, Object> map = new HashMap<>();
 
 			try {
-				if (svc.removeReply(Integer.parseInt(bno))) {
+				if (svc.removeReply(Integer.parseInt(rvo))) {
 					map.put("retCode", "Success");
 				
 				}

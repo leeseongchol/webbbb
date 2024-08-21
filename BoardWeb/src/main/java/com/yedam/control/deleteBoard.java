@@ -21,7 +21,7 @@ public class deleteBoard implements Control {
 		BoardService svc = new BoardServiceImpl();
 		if (svc.removeBoard(Integer.parseInt(bno))) {
 			// 목록으로 이동
-			resp.sendRedirect("boardList.do?page=" +page);
+			resp.sendRedirect("boardList.do?page=" + page);
 		}else {
 			//삭제페이지 이동.
 			resp.sendRedirect("removeBoard.do?bno=" + bno);
