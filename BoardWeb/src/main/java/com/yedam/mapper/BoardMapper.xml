@@ -89,4 +89,25 @@
 		from tbl_board
 		where board_no = #{boardNo}
 	</select>
+	
+	<select id='calendarList' resultType="map">
+	
+		select title as "title",		
+       start_date as "start",        
+       end_date  as "end"     
+		from tbl_schedule
+				
+	</select>
+	
+	<insert id='insertcalendars' parameterType="com.yedam.vo.BoardVO">
+			insert into tbl_schedule (title, start_date, end_date)
+			values(#{title}, #{startDate},#{endDate})
+	</insert  >
+	
+	<delete id='deletecalendars' parameterType="com.yedam.vo.BoardVO">
+		delete from tbl_schedule
+				where title = #{title}
+				and start_date = #{startDate}
+				and end_date = #{endDate}
+	</delete>
 </mapper>

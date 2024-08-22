@@ -18,6 +18,7 @@ import com.yedam.control.AddStudent;
 import com.yedam.control.BoardForm;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.CntByMember;
+import com.yedam.control.FullCalendar;
 import com.yedam.control.GoogleChart;
 import com.yedam.control.ImageDownLoad;
 import com.yedam.control.LoginControl;
@@ -33,6 +34,8 @@ import com.yedam.control.StudentJson;
 import com.yedam.control.StudentListControl;
 import com.yedam.control.UpdateBoard;
 import com.yedam.control.ViewDetailsControl;
+import com.yedam.control.addCalendar;
+import com.yedam.control.delCalendar;
 import com.yedam.control.deleteBoard;
 import com.yedam.control.modifyBoardControl;
 import com.yedam.control.removeBoradControl;
@@ -105,6 +108,11 @@ public class FrontController extends HttpServlet {
 		map.put("/countByMember.do", new CntByMember());	
 		//차트페이지
 		map.put("/googleChart.do", new GoogleChart());
+		
+		//fullcalendar 연습
+		map.put("/fullcalendar.do", new FullCalendar());
+		map.put("/addcalendar.do", new addCalendar());
+		map.put("/deletecalendar.do", new delCalendar());
 	}
 	
 	

@@ -15,8 +15,8 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public List<ReplyVO> replyList(SearchVO sreach) {
-		// TODO Auto-generated method stub
-		return mapper.selectListPaging(sreach);
+		return mapper.selectList(sreach.getBno());
+		//return mapper.selectListPaging(sreach);
 	}
 
 	@Override

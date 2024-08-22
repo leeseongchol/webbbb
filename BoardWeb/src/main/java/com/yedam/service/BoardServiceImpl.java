@@ -3,6 +3,7 @@ package com.yedam.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -23,9 +24,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<BoardVO> boardList(SearchVO search) {
-		// TODO Auto-generated method stub
-//		return mapper.selectList();
-		return mapper.selectListpaging(search);
+		
+		return mapper.selectList();
+	//	return mapper.selectListpaging(search);
 	}
 	
 	@Override
@@ -57,5 +58,26 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return mapper.selectBoard(boardNo);
 	}
+
+	@Override
+	public List<Map<String, Object>> fullCalendars() {
+		// TODO Auto-generated method stub
+		return mapper.calendarList();
+	}
+
+	@Override
+	public boolean addcalendars(BoardVO schedule) {
+		// TODO Auto-generated method stub
+		return mapper.insertcalendars(schedule)==1;
+	}
+
+	@Override
+	public boolean removeCalendar(BoardVO schedule) {
+		// TODO Auto-generated method stub
+		return mapper.deletecalendars(schedule)==1;
+	}
+
+
+
 	
 }

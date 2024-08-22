@@ -1,6 +1,7 @@
 package com.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.common.SearchVO;
 import com.yedam.vo.BoardVO;
@@ -12,13 +13,23 @@ import com.yedam.vo.BoardVO;
  */
 public interface BoardService {
 	List<BoardVO> boardList(SearchVO search);
-	int totalCount(SearchVO search);// 페이징 계산
-	boolean addBoard(BoardVO board);
-	boolean modifyBoard(BoardVO board);
-	boolean removeBoard(int boardNo);
-	BoardVO getBoard(int boardNo);
-}
 
+	int totalCount(SearchVO search);// 페이징 계산
+
+	boolean addBoard(BoardVO board);
+
+	boolean modifyBoard(BoardVO board);
+
+	boolean removeBoard(int boardNo);
+
+	BoardVO getBoard(int boardNo);
+
+	// fullcalendar 연습
+	List<Map<String, Object>> fullCalendars();
+
+	boolean addcalendars(BoardVO schedule);
+	boolean removeCalendar(BoardVO schedule);
+}
 
 //서비스 부분 없으면
 
@@ -30,7 +41,6 @@ public interface BoardService {
 //조회 > 수정 > 등록 
 //method)select + mod + add  ;
 // 따로따로 
-
 
 //서비스 부분 있으면 
 
